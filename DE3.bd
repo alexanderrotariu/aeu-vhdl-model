@@ -1,0 +1,261 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x53BC0AAF53BC0AAF",
+      "device": "xc7a35tcpg236-1",
+      "name": "DE3",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2019.2",
+      "validated": "true"
+    },
+    "design_tree": {
+      "c_addsub_0": "",
+      "mult_gen_0": "",
+      "divider_0": "",
+      "opMux_0": "",
+      "concat16bitRe": "",
+      "constant8bit0": "",
+      "concatDiv": ""
+    },
+    "ports": {
+      "A_0": {
+        "type": "data",
+        "direction": "I",
+        "left": "7",
+        "right": "0",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": "undef",
+            "value_src": "default"
+          }
+        }
+      },
+      "B_0": {
+        "type": "data",
+        "direction": "I",
+        "left": "7",
+        "right": "0",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": "undef",
+            "value_src": "default"
+          }
+        }
+      },
+      "ADD": {
+        "direction": "I"
+      },
+      "SUB": {
+        "direction": "I"
+      },
+      "MULT": {
+        "direction": "I"
+      },
+      "DIV": {
+        "direction": "I"
+      },
+      "RESULT_0": {
+        "direction": "O",
+        "left": "15",
+        "right": "0"
+      }
+    },
+    "components": {
+      "c_addsub_0": {
+        "vlnv": "xilinx.com:ip:c_addsub:12.0",
+        "xci_name": "DE3_c_addsub_0_0",
+        "parameters": {
+          "A_Type": {
+            "value": "Unsigned"
+          },
+          "A_Width": {
+            "value": "8"
+          },
+          "Add_Mode": {
+            "value": "Add_Subtract"
+          },
+          "B_Type": {
+            "value": "Unsigned"
+          },
+          "B_Value": {
+            "value": "00000000"
+          },
+          "B_Width": {
+            "value": "8"
+          },
+          "CE": {
+            "value": "false"
+          },
+          "Latency": {
+            "value": "0"
+          },
+          "Out_Width": {
+            "value": "8"
+          }
+        }
+      },
+      "mult_gen_0": {
+        "vlnv": "xilinx.com:ip:mult_gen:12.0",
+        "xci_name": "DE3_mult_gen_0_0",
+        "parameters": {
+          "OutputWidthHigh": {
+            "value": "15"
+          },
+          "PipeStages": {
+            "value": "0"
+          },
+          "PortAType": {
+            "value": "Unsigned"
+          },
+          "PortAWidth": {
+            "value": "8"
+          },
+          "PortBType": {
+            "value": "Unsigned"
+          },
+          "PortBWidth": {
+            "value": "8"
+          },
+          "Use_Custom_Output_Width": {
+            "value": "true"
+          }
+        }
+      },
+      "divider_0": {
+        "vlnv": "xilinx.com:user:divider:1.0",
+        "xci_name": "DE3_divider_0_0"
+      },
+      "opMux_0": {
+        "vlnv": "xilinx.com:user:opMux:1.0",
+        "xci_name": "DE3_opMux_0_0"
+      },
+      "concat16bitRe": {
+        "vlnv": "xilinx.com:ip:xlconcat:2.1",
+        "xci_name": "DE3_xlconcat_0_0",
+        "parameters": {
+          "IN0_WIDTH": {
+            "value": "8"
+          },
+          "IN1_WIDTH": {
+            "value": "8"
+          }
+        }
+      },
+      "constant8bit0": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "DE3_xlconstant_0_0",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "0"
+          },
+          "CONST_WIDTH": {
+            "value": "8"
+          }
+        }
+      },
+      "concatDiv": {
+        "vlnv": "xilinx.com:ip:xlconcat:2.1",
+        "xci_name": "DE3_xlconcat_0_1",
+        "parameters": {
+          "IN0_WIDTH": {
+            "value": "8"
+          },
+          "IN1_WIDTH": {
+            "value": "8"
+          }
+        }
+      }
+    },
+    "nets": {
+      "constant8bit0_dout": {
+        "ports": [
+          "constant8bit0/dout",
+          "concat16bitRe/In1"
+        ]
+      },
+      "c_addsub_0_S": {
+        "ports": [
+          "c_addsub_0/S",
+          "concat16bitRe/In0"
+        ]
+      },
+      "mult_gen_0_P": {
+        "ports": [
+          "mult_gen_0/P",
+          "opMux_0/PRODUCT"
+        ]
+      },
+      "concat16bitRe_dout": {
+        "ports": [
+          "concat16bitRe/dout",
+          "opMux_0/SUMDIFF"
+        ]
+      },
+      "concatDiv_dout": {
+        "ports": [
+          "concatDiv/dout",
+          "opMux_0/DIVIDED"
+        ]
+      },
+      "A_0_1": {
+        "ports": [
+          "A_0",
+          "c_addsub_0/A",
+          "mult_gen_0/A",
+          "divider_0/A"
+        ]
+      },
+      "B_0_1": {
+        "ports": [
+          "B_0",
+          "c_addsub_0/B",
+          "mult_gen_0/B",
+          "divider_0/B"
+        ]
+      },
+      "ADD_1": {
+        "ports": [
+          "ADD",
+          "c_addsub_0/ADD",
+          "opMux_0/ADD"
+        ]
+      },
+      "SUB_1": {
+        "ports": [
+          "SUB",
+          "opMux_0/SUB"
+        ]
+      },
+      "MULT_1": {
+        "ports": [
+          "MULT",
+          "opMux_0/MULT"
+        ]
+      },
+      "DIV_1": {
+        "ports": [
+          "DIV",
+          "opMux_0/DIV"
+        ]
+      },
+      "opMux_0_RESULT": {
+        "ports": [
+          "opMux_0/RESULT",
+          "RESULT_0"
+        ]
+      },
+      "divider_0_RE": {
+        "ports": [
+          "divider_0/RE",
+          "concatDiv/In0"
+        ]
+      },
+      "divider_0_QUO": {
+        "ports": [
+          "divider_0/QUO",
+          "concatDiv/In1"
+        ]
+      }
+    }
+  }
+}
